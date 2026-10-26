@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sébastien Galant — Portfolio IA : agents, automatisations, méthode</title>
+<meta name="description" content="Portfolio de Sébastien Galant : 15 projets documentés, 14 agents IA, 3 skills, 6 commandes, 66 fiches wiki. Agents LLM, RAG, Docker, n8n, automatisation.">
+<meta name="author" content="Sébastien Galant">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1">
+<meta name="theme-color" content="#0a070a">
+<!-- Mise en ligne : ajouter ici <link rel="canonical" href="https://DOMAINE/"> et <meta property="og:url" content="https://DOMAINE/">, puis générer sitemap.xml et robots.txt. -->
+<meta property="og:type" content="profile">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Sébastien Galant — Portfolio IA">
+<meta property="og:title" content="Sébastien Galant — Portfolio IA : agents, automatisations, méthode">
+<meta property="og:description" content="15 projets documentés, 14 agents IA, 3 skills, 6 commandes et 66 fiches wiki : agents LLM, RAG, Docker, n8n, automatisation.">
+<meta property="og:image" content="assets/hero-glitch.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "name": "Sébastien Galant — Portfolio IA : agents, automatisations, méthode",
+  "description": "Portfolio de compétences de Sébastien Galant : 15 projets documentés, 14 agents IA, 3 skills maison, 6 commandes dédiées, 5 scripts et 66 fiches wiki indexées.",
+  "inLanguage": "fr-FR",
+  "dateModified": "2026-10-25",
+  "image": "assets/hero-glitch.png",
+  "mainEntity": {
+    "@type": "Person",
+    "@id": "#sebastien-galant",
+    "name": "Sébastien Galant",
+    "jobTitle": "Concepteur d'agents IA et d'automatisations",
+    "description": "Sébastien Galant conçoit des agents IA, des automatisations et des outils pédagogiques : dépôts outillés (AGENTS.md / opencode.json), protocoles multi-agents, RAG, Docker, scraping et livrables documentés, construits avec OpenCode, LangChain et un wiki maison.",
+    "email": "mailto:sebastien.galant@gmail.com",
+    "knowsLanguage": "fr",
+    "knowsAbout": ["Intelligence artificielle", "Agents LLM et orchestration multi-agents", "RAG et LangChain", "Docker et docker-compose", "n8n", "Prompt engineering", "Automatisation PowerShell", "Documentation structurée (wiki compilé)"],
+    "subjectOf": [
+      {"@type": "SoftwareApplication", "name": "Teach_me_all", "applicationCategory": "EducationApplication", "description": "Tuteur IA multi-agents : un agent principal pedagogue pilote un protocole en 4 étapes et délègue le contenu à des sous-agents experts.", "creator": {"@id": "#sebastien-galant"}},
+      {"@type": "SoftwareApplication", "name": "neural_ink_project", "applicationCategory": "DeveloperApplication", "description": "Atelier de brainstorming multi-agents orchestré par la commande /brainstorm : agrégateur, doctorant, contestataire, synthétiseur.", "creator": {"@id": "#sebastien-galant"}},
+      {"@type": "CreativeWork", "name": "Palaismental", "description": "Vault Obsidian compilé en encyclopédie structurée de 66 fiches indexées, 7 rubriques, 10 sources brutes et 73 liens croisés."}
+    ]
+  }
+}
+</script>
+<style>
+:root{
+  --bg:#0a070a;
+  --bg2:#120c12;
+  --card:#16101a;
+  --line:#2a1d2e;
+  --txt:#e9e2ea;
+  --mut:#9b8ea2;
+  --crimson:#ff1f4b;
+  --crimson-d:#c40f34;
+  --cyan:#3ff0e0;
+  --amber:#ffc46b;
+  --mono:"Cascadia Mono","Consolas",ui-monospace,monospace;
+  --sans:"Segoe UI",system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--txt);font-family:var(--sans);
+  line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+
+/* ---------- grain + scanlines ---------- */
+.grain{
+  position:fixed;inset:0;pointer-events:none;z-index:900;opacity:.5;
+  background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 3px);
+  mix-blend-mode:overlay;
+}
+.vignette{position:fixed;inset:0;pointer-events:none;z-index:899;
+  background:radial-gradient(ellipse at 50% 40%,transparent 40%,rgba(0,0,0,.75) 100%)}
+
+/* ---------- nav ---------- */
+nav{
+  position:sticky;top:0;z-index:800;display:flex;gap:1.4rem;align-items:center;
+  padding:.85rem clamp(1rem,4vw,3rem);backdrop-filter:blur(14px);
+  background:rgba(10,7,10,.82);border-bottom:1px solid var(--line);
+}
+nav .brand{font-family:var(--mono);font-size:.82rem;letter-spacing:.18em;text-transform:uppercase;color:var(--crimson);font-weight:700}
+nav .links{display:flex;gap:1.1rem;margin-left:auto;flex-wrap:wrap}
+nav .links a{font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);transition:.2s}
+nav .links a:hover{color:var(--cyan)}
+nav .mail{font-family:var(--mono);font-size:.74rem;color:var(--crimson);border:1px solid var(--crimson-d);padding:.3rem .7rem;border-radius:2px;transition:.2s}
+nav .mail:hover{background:var(--crimson);color:#fff}
+
+/* ---------- hero ---------- */
+header.hero{
+  position:relative;min-height:92vh;display:flex;align-items:center;
+  padding:5rem clamp(1rem,6vw,5rem) 4rem;isolation:isolate;overflow:hidden;
+}
+header.hero .bg{
+  position:absolute;inset:0;z-index:-2;
+  background:url("assets/hero-glitch.png") center/cover no-repeat;
+  filter:contrast(1.15) saturate(1.2) brightness(.42);
+  transform:scale(1.06);
+}
+header.hero .bg:after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(105deg,rgba(10,7,10,.96) 0%,rgba(10,7,10,.78) 45%,rgba(196,15,52,.28) 100%);
+}
+.hero-inner{max-width:1000px}
+.kicker{
+  font-family:var(--mono);font-size:.75rem;letter-spacing:.35em;text-transform:uppercase;
+  color:var(--cyan);margin-bottom:1.4rem;display:flex;align-items:center;gap:.8rem;
+}
+.kicker:before{content:"";width:46px;height:1px;background:var(--cyan)}
+h1.glitch{
+  font-size:clamp(2.6rem,8vw,6.2rem);line-height:.94;font-weight:800;letter-spacing:-.03em;
+  text-transform:uppercase;position:relative;margin-bottom:.4rem;
+}
+h1.glitch span{display:block;position:relative}
+h1.glitch .accent{color:var(--crimson)}
+h1.glitch span:before,h1.glitch span:after{
+  content:attr(data-text);position:absolute;top:0;left:0;width:100%;
+  clip-path:inset(0 0 55% 0);opacity:.7;pointer-events:none;
+}
+h1.glitch span:before{color:var(--cyan);animation:gl1 3.4s infinite steps(2)}
+h1.glitch span:after{color:var(--crimson);clip-path:inset(58% 0 0 0);animation:gl2 2.7s infinite steps(2)}
+@keyframes gl1{0%,92%,100%{transform:translate(0,0)}93%{transform:translate(-5px,-2px)}96%{transform:translate(4px,1px)}}
+@keyframes gl2{0%,90%,100%{transform:translate(0,0)}91%{transform:translate(5px,2px)}95%{transform:translate(-4px,-1px)}}
+.hero-sub{
+  font-size:clamp(1rem,2vw,1.32rem);color:#d6ccd9;max-width:660px;margin-top:1.6rem;
+}
+.hero-sub b{color:var(--amber);font-weight:600}
+.hero-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:2rem}
+.hero-tags span{
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;
+  padding:.38rem .75rem;border:1px solid rgba(255,31,75,.45);border-radius:2px;
+  background:rgba(255,31,75,.08);color:#ffb9c7;
+}
+.hero-cta{display:flex;gap:1rem;margin-top:2.6rem;flex-wrap:wrap}
+.btn{
+  font-family:var(--mono);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;
+  padding:.85rem 1.5rem;border:1px solid var(--crimson);background:var(--crimson);color:#fff;
+  transition:.2s;border-radius:2px;cursor:pointer;
+}
+.btn:hover{background:transparent;color:var(--crimson)}
+.btn.ghost{background:transparent;border-color:var(--line);color:var(--mut)}
+.btn.ghost:hover{border-color:var(--cyan);color:var(--cyan)}
+
+/* ---------- sections ---------- */
+section{padding:clamp(3.5rem,7vw,6.5rem) clamp(1rem,6vw,5rem);position:relative}
+.sec-head{margin-bottom:2.6rem;max-width:900px}
+.sec-num{font-family:var(--mono);font-size:.72rem;letter-spacing:.3em;color:var(--crimson)}
+h2{
+  font-size:clamp(1.7rem,4vw,3rem);font-weight:800;letter-spacing:-.02em;
+  text-transform:uppercase;line-height:1.05;margin:.5rem 0 .8rem;
+}
+h2 em{font-style:normal;color:var(--crimson)}
+.sec-desc{color:var(--mut);font-size:1.02rem;max-width:720px}
+
+/* ---------- stats ---------- */
+.stats{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;
+  background:var(--line);border:1px solid var(--line);margin-top:-3.5rem;position:relative;z-index:5;
+}
+.stat{background:var(--bg2);padding:1.5rem 1.2rem}
+.stat .n{font-family:var(--mono);font-size:clamp(1.8rem,4vw,2.7rem);font-weight:700;color:var(--crimson);line-height:1}
+.stat .l{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);margin-top:.5rem}
+
+/* ---------- filters ---------- */
+.filters{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.8rem}
+.filters button{
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:.5rem .95rem;background:transparent;color:var(--mut);
+  border:1px solid var(--line);border-radius:2px;cursor:pointer;transition:.18s;
+}
+.filters button:hover{border-color:var(--crimson);color:var(--txt)}
+.filters button.on{background:var(--crimson);border-color:var(--crimson);color:#fff}
+
+/* ---------- project grid ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(315px,1fr));gap:1.1rem}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:3px;
+  padding:1.4rem 1.35rem 1.3rem;position:relative;overflow:hidden;transition:.22s;
+  display:flex;flex-direction:column;
+}
+.card:before{content:"";position:absolute;top:0;left:0;width:100%;height:2px;
+  background:linear-gradient(90deg,var(--crimson),var(--cyan));transform:scaleX(0);transform-origin:left;transition:.3s}
+.card:hover{transform:translateY(-4px);border-color:#45304d;background:#1b131f}
+.card:hover:before{transform:scaleX(1)}
+.card .cat{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan)}
+.card h3{font-size:1.16rem;font-weight:700;margin:.5rem 0 .55rem;letter-spacing:-.01em}
+.card p{font-size:.9rem;color:#bcb0c1;flex:1}
+.card .stack{display:flex;flex-wrap:wrap;gap:.32rem;margin-top:.95rem}
+.card .stack span{
+  font-family:var(--mono);font-size:.62rem;padding:.24rem .5rem;border:1px solid var(--line);
+  border-radius:2px;color:var(--mut);background:#0f0a11;
+}
+.card .meta{font-family:var(--mono);font-size:.63rem;color:#6f6275;margin-top:.8rem;letter-spacing:.05em}
+.card.hide{display:none}
+
+/* ---------- stack ---------- */
+.stack-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(275px,1fr));gap:1.1rem}
+.skill{background:var(--bg2);border:1px solid var(--line);border-left:3px solid var(--crimson);padding:1.35rem 1.3rem;border-radius:2px}
+.skill h3{font-size:1rem;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.7rem;color:var(--amber)}
+.skill ul{list-style:none;font-size:.88rem;color:#bdb2c2}
+.skill li{padding:.24rem 0 .24rem 1rem;position:relative}
+.skill li:before{content:"▸";position:absolute;left:0;color:var(--crimson)}
+
+/* ---------- built ---------- */
+.built h3.bar{
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--cyan);margin:2.2rem 0 .9rem;padding-bottom:.5rem;border-bottom:1px solid var(--line);
+}
+.chips{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.6rem}
+.chip{
+  background:var(--card);border:1px solid var(--line);border-radius:2px;padding:.7rem .85rem;
+  display:flex;flex-direction:column;height:100%;transition:.18s;
+}
+.chip:hover{border-color:var(--crimson)}
+.chip b{display:block;font-family:var(--mono);font-size:.76rem;color:var(--crimson);letter-spacing:.05em;margin-bottom:.15rem;word-break:break-word}
+.chip i{font-style:normal;color:var(--mut);font-size:.78rem;line-height:1.45;display:block;flex:1}
+
+/* ---------- palaismental ---------- */
+.pipe{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.85rem}
+.pstep{background:var(--card);border:1px solid var(--line);border-top:2px solid var(--cyan);padding:1.1rem 1.05rem;border-radius:2px}
+.pstep .pn{font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan)}
+.pstep code{display:block;font-family:var(--mono);font-size:.9rem;color:var(--crimson);margin:.55rem 0 .5rem;font-weight:700}
+.pstep p{font-size:.83rem;color:var(--mut);line-height:1.5}
+.quote{
+  margin-top:1.5rem;border-left:3px solid var(--crimson);background:var(--bg);
+  padding:1.3rem 1.4rem;font-size:1.02rem;color:#d9cfdd;font-style:italic;line-height:1.55;
+}
+.quote span{display:block;margin-top:.75rem;font-family:var(--mono);font-size:.66rem;
+  color:var(--mut);font-style:normal;letter-spacing:.12em;text-transform:uppercase}
+.gov{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:.85rem;margin-top:1.5rem}
+.gov div{background:var(--bg);border:1px solid var(--line);padding:1rem 1.1rem;border-radius:2px;font-size:.86rem;color:#bcb0c1;line-height:1.5}
+.gov b{display:block;font-family:var(--mono);font-size:.68rem;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--amber);margin-bottom:.4rem}
+.figure-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;
+  background:var(--line);border:1px solid var(--line);margin-top:1.5rem}
+.figure-row div{background:var(--bg);padding:1.1rem 1rem}
+.figure-row .n{font-family:var(--mono);font-size:1.6rem;font-weight:700;color:var(--cyan);line-height:1}
+.figure-row .l{font-family:var(--mono);font-size:.63rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--mut);margin-top:.4rem}
+
+/* ---------- method ---------- */
+.method{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.1rem}
+.mstep{background:linear-gradient(160deg,#1a111d,#120c12);border:1px solid var(--line);padding:1.4rem 1.3rem;border-radius:3px;position:relative}
+.mstep .idx{font-family:var(--mono);font-size:1.7rem;color:rgba(255,31,75,.35);font-weight:700;line-height:1}
+.mstep h4{font-size:.98rem;margin:.55rem 0 .5rem;text-transform:uppercase;letter-spacing:.04em}
+.mstep p{font-size:.86rem;color:var(--mut)}
+
+/* ---------- gallery ---------- */
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
+.gallery figure{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:3px;background:#000}
+.gallery img{height:270px;width:100%;object-fit:cover;filter:grayscale(.25) contrast(1.1);transition:.4s}
+.gallery figure:hover img{filter:none;transform:scale(1.05)}
+.gallery figcaption{
+  position:absolute;left:0;bottom:0;width:100%;padding:.7rem .8rem;
+  font-family:var(--mono);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;
+  background:linear-gradient(transparent,rgba(0,0,0,.9));color:#e6dce9;
+}
+
+/* ---------- contact ---------- */
+.contact{
+  background:linear-gradient(120deg,#160b12 0%,#0a070a 60%);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+}
+.contact-wrap{display:flex;flex-wrap:wrap;gap:2.5rem;align-items:center;justify-content:space-between}
+.contact h2{margin-top:0}
+.mailbig{
+  font-family:var(--mono);font-size:clamp(1rem,3vw,1.7rem);color:var(--crimson);
+  border-bottom:2px solid var(--crimson-d);padding-bottom:.3rem;transition:.2s;word-break:break-all;
+}
+.mailbig:hover{color:var(--cyan);border-color:var(--cyan)}
+.notice{font-family:var(--mono);font-size:.68rem;color:#6f6275;margin-top:1rem;letter-spacing:.06em}
+
+footer{padding:2rem clamp(1rem,6vw,5rem);display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;
+  font-family:var(--mono);font-size:.68rem;color:#6f6275;letter-spacing:.1em;text-transform:uppercase}
+
+@media(max-width:720px){
+  nav .links{display:none}
+  .stats{margin-top:-1.5rem}
+  header.hero{min-height:78vh}
+}
+@media(prefers-reduced-motion:reduce){
+  h1.glitch span:before,h1.glitch span:after{animation:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+<div class="vignette"></div>
+
+<nav aria-label="Navigation principale">
+  <span class="brand">S. Galant // portfolio</span>
+  <div class="links">
+    <a href="#palaismental">Palaismental</a>
+    <a href="#projets">Projets</a>
+    <a href="#stack">Stack</a>
+    <a href="#construit">Ce que j'ai construit</a>
+    <a href="#methode">Méthode</a>
+    <a href="#galerie">Galerie</a>
+  </div>
+  <a class="mail" href="mailto:sebastien.galant@gmail.com">Contact</a>
+</nav>
+
+<header class="hero">
+  <div class="bg"></div>
+  <div class="hero-inner">
+    <div class="kicker">Portfolio de compétences · Projets IA</div>
+    <h1 class="glitch">
+      <span data-text="Sébastien">Sébastien</span>
+      <span class="accent" data-text="Galant">Galant</span>
+    </h1>
+    <p class="hero-sub">
+      <b>Sébastien Galant</b> conçoit des <b>agents IA</b>, des automatisations et des outils pédagogiques.
+      Cette page documente 15 projets, 14 agents IA, 3 skills, 6 commandes et 66 fiches wiki indexées :
+      des dépôts outillés (AGENTS.md / opencode.json), des protocoles multi-agents, du RAG, du Docker,
+      du scraping et des livrables documentés — construits avec OpenCode, LangChain et un wiki maison.
+    </p>
+    <div class="hero-tags">
+      <span>Agents LLM</span><span>RAG · LangChain</span><span>Docker / compose</span>
+      <span>n8n</span><span>Prompt engineering</span><span>Automatisation PowerShell</span>
+      <span>Web &amp; mobile</span><span>Pédagogie IA</span>
+    </div>
+    <div class="hero-cta">
+      <a class="btn" href="#projets">Voir les projets</a>
+      <a class="btn ghost" href="#stack">Compétences</a>
+    </div>
+  </div>
+</header>
+
+<div class="stats">
+  <div class="stat"><div class="n">15</div><div class="l">projets documentés</div></div>
+  <div class="stat"><div class="n">14</div><div class="l">agents IA conçus</div></div>
+  <div class="stat"><div class="n">3</div><div class="l">skills maison</div></div>
+  <div class="stat"><div class="n">6</div><div class="l">commandes dédiées</div></div>
+  <div class="stat"><div class="n">5</div><div class="l">scripts d'automatisation</div></div>
+  <div class="stat"><div class="n">66</div><div class="l">fiches wiki indexées</div></div>
+</div>
+<p class="notice" style="padding:0 clamp(1rem,6vw,5rem)">Chiffres relevés dans le wiki Palaismental — inventaire des dépôts et journal d'ingestion au 22 octobre 2026.</p>
+
+<main id="contenu">
+
+<!-- ============ PALAISMENTAL ============ -->
+<section id="palaismental" style="background:var(--bg2);border-bottom:1px solid var(--line)">
+  <div class="sec-head">
+    <div class="sec-num">01 — Système de pensée</div>
+    <h2>Le <em>Palaismental</em>, wiki compilé</h2>
+    <p class="sec-desc">
+      Le <b>Palaismental</b> est un vault Obsidian compilé en <b>encyclopédie structurée</b> :
+      66 fiches indexées, 7 rubriques, 10 sources brutes et 73 liens croisés (état au 22 octobre 2026).
+      Chaque projet, agent, méthode ou source brute y devient une fiche indexée, tracée et reliée —
+      la pensée y est <b>architecturée</b>, pas accumulée.
+    </p>
+  </div>
+
+  <div class="pipe">
+    <div class="pstep">
+      <div class="pn">Étape 1 · Entrée</div>
+      <code>raw/</code>
+      <p>Sources brutes déposées (transcripts, JSON d'inventaire, PDF, cours). <b>Lecture seule</b> : jamais modifié, déplacé ni supprimé. 10 sources actuelles.</p>
+    </div>
+    <div class="pstep">
+      <div class="pn">Étape 2 · Extraction</div>
+      <code>wiki/</code>
+      <p>Chaque concept devient une fiche : frontmatter complet (<i>title, tags, sources, created, updated</i>), définition en 1 à 3 phrases, détails structurés.</p>
+    </div>
+    <div class="pstep">
+      <div class="pn">Étape 3 · Indexation</div>
+      <code>index.md</code>
+      <p>Table des matières vivante, triée par rubrique, mise à jour à chaque ingestion. 73 liens, jamais de liste orpheline en bas de fichier.</p>
+    </div>
+    <div class="pstep">
+      <div class="pn">Étape 4 · Mémoire</div>
+      <code>log.md</code>
+      <p>Journal d'ingestion : une ligne par entrée — date, source, nombre de fiches créées/mises à jour, résumé. L'historique est consultable.</p>
+    </div>
+  </div>
+
+  <blockquote class="quote">
+    « Arrêtez de refaire du RAG jetable ; laissez le LLM compiler une fois pour toutes dans un wiki
+    structuré. Votre savoir doit bénéficier de l'effet cumulé ; il ne doit pas se dissoudre à chaque requête. »
+    <span>Principe attribué à Andrej Karpathy (2024-2025) · fiche wiki-compile-vs-rag, Palaismental</span>
+  </blockquote>
+
+  <div class="gov">
+    <div><b>1 idée = 1 fiche</b>Les concepts distincts deviennent des fiches distinctes, reliées entre elles par des wikilinks <code>[[…]]</code>.</div>
+    <div><b>Fusion, jamais doublon</b>Toute idée déjà présente est fusionnée dans la fiche existante et sa date <code>updated</code> est portée à jour.</div>
+    <div><b>Zéro invention</b>Aucun contenu absent de la source. Les sources restent sous la forme <code>raw/…</code> : traçabilité totale.</div>
+    <div><b>Sortie unique</b>Tout ce qui est produit l'est dans <code>wiki/</code>. Les dépôts bruts, la config et les règles du système sont protégés.</div>
+  </div>
+
+  <div class="figure-row">
+    <div><div class="n">66</div><div class="l">fiches</div></div>
+    <div><div class="n">7</div><div class="l">rubriques</div></div>
+    <div><div class="n">10</div><div class="l">sources brutes</div></div>
+    <div><div class="n">73</div><div class="l">liens croisés</div></div>
+    <div><div class="n">1</div><div class="l">commande d'ingestion</div></div>
+  </div>
+</section>
+
+<!-- ============ PROJETS ============ -->
+<section id="projets">
+  <div class="sec-head">
+    <div class="sec-num">02 — Réalisations</div>
+    <h2>Les 15 <em>projets</em> de Sébastien Galant</h2>
+    <p class="sec-desc">Agents IA, automatisations, sites et applications, outils et recherche : 15 projets documentés, filtrables par domaine. Les volumes indiqués (fichiers, Mo) proviennent de l'inventaire des dépôts du 18 octobre 2026.</p>
+  </div>
+
+  <div class="filters" id="filters">
+    <button class="on" data-f="all">Tous</button>
+    <button data-f="ia">Agents &amp; IA</button>
+    <button data-f="auto">Automatisation</button>
+    <button data-f="web">Web &amp; création</button>
+    <button data-f="learn">Apprentissage</button>
+    <button data-f="tool">Outils &amp; méthode</button>
+    <button data-f="res">Recherche</button>
+  </div>
+
+  <div class="grid" id="grid">
+
+    <article class="card" data-c="ia">
+      <div class="cat">Agents &amp; IA · Apprentissage</div>
+      <h3>Teach_me_all</h3>
+      <p><b>Teach_me_all</b> est un tuteur IA multi-agents : un agent principal <b>pedagogue</b> pilote un protocole en 4 étapes et délègue le contenu à des sous-agents experts (mathématiques, informatique, SES, Forward Deployed Engineer). Il assure le suivi des matières, des apprenants et de la progression.</p>
+      <div class="stack"><span>OpenCode agents</span><span>1 primary + 4 sub</span><span>5 commandes</span><span>Git</span></div>
+      <div class="meta">31 fichiers · AGENTS.md + opencode.json · projets/apprentissage</div>
+    </article>
+
+    <article class="card" data-c="ia learn">
+      <div class="cat">IA · Analyse stratégique</div>
+      <h3>these-IA — Process Manager &amp; FAI</h3>
+      <p><b>these-IA</b> est une étude sur l'automatisation IA de la gestion des erreurs de dossier dans un fournisseur d'accès internet (FAI) : analyse socratique en 6 thèmes, temps de traitement de 17,5 min réduit de moitié par <b>human-in-the-loop</b> (validation humaine), architecture LLM on-premise chiffrée et isolée.</p>
+      <div class="stack"><span>LLM on-premise</span><span>Human-in-the-loop</span><span>Note structurée</span><span>Export PDF</span></div>
+      <div class="meta">Source unique markdown · 8 Ko · projets/apprentissage</div>
+    </article>
+
+    <article class="card" data-c="ia">
+      <div class="cat">Agents &amp; IA · Atelier</div>
+      <h3>neural_ink_project</h3>
+      <p><b>neural_ink_project</b> est un atelier de brainstorming multi-agents : la commande <b>/brainstorm</b> orchestre une chaîne socratique <b>agrégateur → doctorant → contestataire → synthétiseur</b>. Les sessions sont regroupées, le protocole et les synthèses documentés.</p>
+      <div class="stack"><span>Protocole 4 agents</span><span>Commande /brainstorm</span><span>Synthèse dialectique</span></div>
+      <div class="meta">16 fichiers · 6,25 Mo · projets/atelier</div>
+    </article>
+
+    <article class="card" data-c="auto">
+      <div class="cat">Automatisation</div>
+      <h3>n8n + scripts-n8n</h3>
+      <p><b>n8n + scripts-n8n</b> est une instance d'automatisation <b>n8n</b> conteneurisée : docker-compose, service sur le port 5678, volume nommé <b>n8n_data</b> pour persister les workflows. Deux scripts .bat la pilotent (lancement avec élévation UAC automatique, arrêt propre).</p>
+      <div class="stack"><span>Docker compose</span><span>Volume nommé</span><span>.bat / UAC</span><span>n8n</span></div>
+      <div class="meta">2 dépôts liés · projets/automatisation</div>
+    </article>
+
+    <article class="card" data-c="web auto">
+      <div class="cat">Web &amp; création · Data</div>
+      <h3>SYN_INT_VSD</h3>
+      <p><b>SYN_INT_VSD</b> est le site du Syndicat Intercommunal : 54 pages HTML, 6 CSS et 4 JS. Le dépôt est initialisé par <b>init.ps1</b> et les données sont collectées par <b>scrape.ps1</b> (22,9 Ko), qui produit un JSON UTF-8 propre.</p>
+      <div class="stack"><span>HTML / CSS / JS</span><span>PowerShell</span><span>Scraping → JSON</span><span>Git</span></div>
+      <div class="meta">88 fichiers · 1,26 Mo · projets/creation</div>
+    </article>
+
+    <article class="card" data-c="web">
+      <div class="cat">Web &amp; création · Mobile</div>
+      <h3>synapson</h3>
+      <p><b>synapson</b> est une application mobile <b>Flutter</b> : 27 fichiers Dart, architecture Android complète (manifest, ressources, gradle), accompagnée d'un guide de navigation dédié.</p>
+      <div class="stack"><span>Flutter</span><span>Dart</span><span>Mobile</span><span>Git</span></div>
+      <div class="meta">85 fichiers · 7,11 Mo · projets/creation</div>
+    </article>
+
+    <article class="card" data-c="web">
+      <div class="cat">Web &amp; création · Refonte</div>
+      <h3>refonte_amoremondo</h3>
+      <p><b>refonte_amoremondo</b> est une refonte statique complète : 102 fichiers (25 markdowns, 24 webp, 17 png, 13 modules .mjs, 9 json), avec recette documentée et <b>relance de session</b> en une phrase pour reprendre le fil. Un audit et une bibliothèque d'images (386 fichiers, 441 Mo) sont associés au projet.</p>
+      <div class="stack"><span>Site statique</span><span>Modules ES</span><span>README + recette</span><span>Audit</span></div>
+      <div class="meta">102 fichiers · 10,72 Mo · projets/creation</div>
+    </article>
+
+    <article class="card" data-c="web tool">
+      <div class="cat">Outils · Data visualisation</div>
+      <h3>Ko_mico — deck sécurité</h3>
+      <p><b>Ko_mico</b> est un deck PowerPoint <b>« Sécurité et ingénierie sociale »</b> destiné à un commissariat : 28 sections (phishing, smishing, vishing, tailgating, prétexting, protocole contre-appel, quiz). Chaque section porte une déclaration <b>Visual:</b> qui pilote la génération automatique du .pptx.</p>
+      <div class="stack"><span>PPTX as a code</span><span>outline.md</span><span>Génération + QA</span></div>
+      <div class="meta">5 fichiers · v1 → v2 · projets/creation</div>
+    </article>
+
+    <article class="card" data-c="tool">
+      <div class="cat">Outils · Design system</div>
+      <h3>templatePP</h3>
+      <p><b>templatePP</b> est une bibliothèque de gabarits PowerPoint (Warm Neutral, Memphis, Brutalist…) et de profils de mise en page <b>générés</b> par l'agent pptx-template-onboarder : profils JSON, catalogues de layouts, digest. Elle alimente tous les autres decks.</p>
+      <div class="stack"><span>Templates</span><span>Layout catalog</span><span>JSON profiling</span></div>
+      <div class="meta">9 fichiers · 17,36 Mo · projets/outils</div>
+    </article>
+
+    <article class="card" data-c="ia tool">
+      <div class="cat">IA · Documentation</div>
+      <h3>prompt-skills — manuel Agent Skills</h3>
+      <p><b>prompt-skills</b> est le manuel v1.0 des Agent Skills en trois formats (markdown, PDF, HTML) : anatomie d'un skill, préparation, sélection, audit et installation de compétences empaquétées pour Claude Code, Codex et OpenCode.</p>
+      <div class="stack"><span>3 formats</span><span>Audit de skills</span><span>Installation</span></div>
+      <div class="meta">3 fichiers · 0,19 Mo · projets/</div>
+    </article>
+
+    <article class="card" data-c="tool ia">
+      <div class="cat">Méthode · Prompt engineering</div>
+      <h3>ai-smalltaks + charte rédactionnelle</h3>
+      <p><b>ai-smalltaks</b> est un atelier sémantique de rédaction de prompts : méthode <b>Cause × Contexte = Effet</b>, calibrage du périmètre et de la jauge de liberté, 5 étapes (Exploration → Planification → Exécution → Vérification → Consolidation). L'atelier s'adosse à une charte permanente en double version (interdits / injonctions, règles R01…).</p>
+      <div class="stack"><span>Méthode C×C=E</span><span>Charte R01…</span><span>2 versions</span></div>
+      <div class="meta">3 fichiers · projets/ + skill promptredactor</div>
+    </article>
+
+    <article class="card" data-c="tool">
+      <div class="cat">Outils · Freelance</div>
+      <h3>Khadi — stack zéro euro</h3>
+      <p><b>Khadi</b> est un outil métier pour un travel planner et chef de projet événementiel MICE (réunions, incentives, congrès, événements) : parcours client canonique en 100 % freemium (Calendly → Tally → Notion/Sheets calculateur de budget → carte interactive et carnet de voyage → devis/factures), avec des bases de prestataires partagées.</p>
+      <div class="stack"><span>Notion</span><span>Tally</span><span>Canva</span><span>Google Maps</span></div>
+      <div class="meta">AGENTS.md 3,2 Ko · Git · projets/creation</div>
+    </article>
+
+    <article class="card" data-c="res">
+      <div class="cat">Recherche · Quant</div>
+      <h3>TEOTRADE</h3>
+      <p><b>TEOTRADE</b> est une recherche sur les stratégies de trading : notes d'analyse (Hurst, volatilité, dimension temps), discipline documentaire stricte — toute hypothèse chiffrée reste dans le corps du document avec son origine. Recherche personnelle, aucune décision d'investissement.</p>
+      <div class="stack"><span>Analyse quant</span><span>Traçabilité des sources</span><span>Markdown</span></div>
+      <div class="meta">4 fichiers · projets/spe</div>
+    </article>
+
+    <article class="card" data-c="web res">
+      <div class="cat">Code · Jeu</div>
+      <h3>meca_jeu</h3>
+      <p>Bloc de 7 scripts Python d'expérimentation lié à <b>synapson</b> — prototypage mécanique de gameplay avant intégration dans l'application.</p>
+      <div class="stack"><span>Python</span><span>Prototypage</span></div>
+      <div class="meta">7 fichiers .py · 0,02 Mo · racine</div>
+    </article>
+
+    <article class="card" data-c="auto tool">
+      <div class="cat">Automatisation · Exploitation</div>
+      <h3>Écosystème de scripts &amp; configurations</h3>
+      <p>Le socle réutilisable qui sous-tend les projets : <b>lancer/arreter-n8n.bat</b>, <b>docker-compose.yml</b>, <b>init.ps1</b>, <b>scrape.ps1</b>, plus l'inventaire des 12 dépôts outillés en AGENTS.md + opencode.json.</p>
+      <div class="stack"><span>5 scripts</span><span>12 dépôts outillés</span><span>CI de configuration</span></div>
+      <div class="meta">Inventaire documenté dans le wiki Palaismental</div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ STACK ============ -->
+<section id="stack" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="sec-head">
+    <div class="sec-num">03 — Compétences</div>
+    <h2>Stack &amp; <em>compétences</em></h2>
+    <p class="sec-desc">Ce que les projets démontrent concrètement, domaine par domaine.</p>
+  </div>
+  <div class="stack-grid">
+    <div class="skill">
+      <h3>Agents &amp; orchestration LLM</h3>
+      <ul>
+        <li>Agents OpenCode (primary + subagents), portée globale et par projet</li>
+        <li>Commandes custom et skills packageables (SKILL.md)</li>
+        <li>Chaînes multi-agents socratiques (thèse / objection / synthèse)</li>
+        <li>Gestion de contexte : cause × contexte = effet, anti-pollution conversationnelle</li>
+      </ul>
+    </div>
+    <div class="skill">
+      <h3>LangChain &amp; RAG</h3>
+      <ul>
+        <li>Fondamentaux : ChatModels, prompts, LCEL, mémoire</li>
+        <li>RAG complet : loaders, splitting, base Chroma, chaîne de récupération</li>
+        <li>Agents : outils <code>@tool</code>, raisonnement ReAct</li>
+        <li>Production : LangServe, orchestration LangGraph, observabilité LangSmith</li>
+      </ul>
+    </div>
+    <div class="skill">
+      <h3>Infra &amp; automatisation</h3>
+      <ul>
+        <li>Docker : images, conteneurs, réseaux, volumes, maintenance</li>
+        <li>docker-compose multi-services, persistance par volume nommé</li>
+        <li>Durcissement : secrets, drop de privilèges, checklist sécurité</li>
+        <li>n8n, scripts .bat avec élévation UAC, PowerShell (bootstrap + scraping)</li>
+      </ul>
+    </div>
+    <div class="skill">
+      <h3>Web, mobile &amp; documents</h3>
+      <ul>
+        <li>Sites statiques HTML / CSS / JS, modules ES</li>
+        <li>Application mobile Flutter / Dart</li>
+        <li>Production de decks : outline piloté par déclarations Visual, QA automatisée</li>
+        <li>Conversions md/txt → PDF, DOCX, PPTX avec contrôle de mise en page</li>
+      </ul>
+    </div>
+    <div class="skill">
+      <h3>Données &amp; exploitation</h3>
+      <ul>
+        <li>Scraping PowerShell → JSON UTF-8 sans BOM</li>
+        <li>Bases de données Notion / Google Sheets, calculateurs de budget</li>
+        <li>Bibliothèques d'assets volumineuses (441 Mo, 386 fichiers) indexées</li>
+        <li>Traçabilité systématique des sources et hypothèses</li>
+      </ul>
+    </div>
+    <div class="skill">
+      <h3>Méthode &amp; pédagogie</h3>
+      <ul>
+        <li>Questionnement socratique et protocoles en étapes (exploration → consolidation)</li>
+        <li>Vault Obsidian compilé (wiki) vs RAG jetable — ingestion documentée</li>
+        <li>Charte rédactionnelle appliquée aux productions IA</li>
+        <li>Ingénierie pédagogique : programmes, progression, évaluation par apprenant</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONSTRUIT ============ -->
+<section id="construit" class="built">
+  <div class="sec-head">
+    <div class="sec-num">04 — Artefacts</div>
+    <h2>Ce que j'ai <em>construit</em></h2>
+    <p class="sec-desc">Au-delà des projets : la couche d'outillage — agents, skills, commandes et scripts écrits puis documentés.</p>
+  </div>
+
+  <h3 class="bar">14 agents IA</h3>
+  <div class="chips">
+    <div class="chip"><b>pedagogue</b><i>Agent principal : protocole 4 étapes, délégation aux experts matière.</i></div>
+    <div class="chip"><b>math · info · ses · fde</b><i>4 sous-agents experts (adulte / lycée) générés depuis un programme.</i></div>
+    <div class="chip"><b>aggregateur</b><i>Structure le questionnement socratique en thèse pondérée (pertinence / légitimité).</i></div>
+    <div class="chip"><b>doctorant</b><i>Rédige la thèse complète à partir des données structurées.</i></div>
+    <div class="chip"><b>contestataire</b><i>Oppose des objections argumentées à la thèse.</i></div>
+    <div class="chip"><b>synthetiseur</b><i>Synthèse finale neutre par analyse sémantique et dialectique.</i></div>
+    <div class="chip"><b>pptx-outline-architect</b><i>Transforme n'importe quelle source en outline de génération prête.</i></div>
+    <div class="chip"><b>pptx-deck-qa</b><i>Quality gate : validation, débordements, équilibre des colonnes, score pass/fail.</i></div>
+    <div class="chip"><b>pptx-template-onboarder</b><i>Profile un template PowerPoint maison et le rend réutilisable.</i></div>
+    <div class="chip"><b>verificateur-mise-en-page</b><i>Génère le PDF final et contrôle débordements, tableaux, foliotage.</i></div>
+    <div class="chip"><b>geo</b><i>Audit GEO : rend le contenu citable par les moteurs génératifs (ChatGPT, Perplexity, AI Overviews).</i></div>
+  </div>
+
+  <h3 class="bar">3 skills maison</h3>
+  <div class="chips">
+    <div class="chip"><b>pdf</b><i>Conversion md/txt → PDF, DOCX, PPTX, paramétrée à chaque appel.</i></div>
+    <div class="chip"><b>promptredactor</b><i>Fabricant de prompts par questionnement socratique, zones d'ombre régulées.</i></div>
+    <div class="chip"><b>opencode-skill-creator</b><i>Création, evals, benchmark et optimisation de skills (31,7 Ko).</i></div>
+  </div>
+
+  <h3 class="bar">6 commandes dédiées</h3>
+  <div class="chips">
+    <div class="chip"><b>/brainstorm</b><i>Protocole multi-agent complet (11,4 Ko), portée globale.</i></div>
+    <div class="chip"><b>/teach_me_all</b><i>Session d'apprentissage : parse #MATIERE_UTILISATEUR, lance le protocole.</i></div>
+    <div class="chip"><b>/programme</b><i>Import et mise en forme d'un programme vers le gabarit canonique.</i></div>
+    <div class="chip"><b>/nouvelle-matiere</b><i>Crée sous-agent + dossier programme + suivi de progression.</i></div>
+    <div class="chip"><b>/nouvel-utilisateur</b><i>Crée un profil apprenant utilisable avec toute matière.</i></div>
+    <div class="chip"><b>/matieres</b><i>Inventaire matières, utilisateurs, programmes et progression.</i></div>
+  </div>
+
+  <h3 class="bar">5 scripts d'exploitation</h3>
+  <div class="chips">
+    <div class="chip"><b>lancer-n8n.bat</b><i>Élévation UAC, démarrage Docker Desktop et du service Windows.</i></div>
+    <div class="chip"><b>arreter-n8n.bat</b><i>Arrêt propre du service et du conteneur.</i></div>
+    <div class="chip"><b>docker-compose.yml</b><i>Service n8n, port 5678, volume persistant n8n_data.</i></div>
+    <div class="chip"><b>init.ps1</b><i>Bootstrap complet du dépôt SYN_INT_VSD.</i></div>
+    <div class="chip"><b>scrape.ps1</b><i>Collecte automatisée → données_scrapees.json (22,9 Ko).</i></div>
+  </div>
+</section>
+
+<!-- ============ METHODE ============ -->
+<section id="methode" style="background:var(--bg2);border-top:1px solid var(--line)">
+  <div class="sec-head">
+    <div class="sec-num">05 — Méthode</div>
+    <h2>Comment je <em>travaille</em></h2>
+    <p class="sec-desc">Une méthodologie constante sur tous les projets : contexte maîtrisé, sources traçables, livrables documentés.</p>
+  </div>
+  <div class="method">
+    <div class="mstep"><div class="idx">01</div><h4>Cadrer</h4><p>Cause × contexte = effet. Définir périmètre, contrainte et jauge de liberté avant toute génération.</p></div>
+    <div class="mstep"><div class="idx">02</div><h4>Structurer</h4><p>Outline ou wiki d'abord : une idée par fiche, frontmatter valide, liens croisés, index mis à jour à chaque ingestion.</p></div>
+    <div class="mstep"><div class="idx">03</div><h4>Construire</h4><p>Agents spécialisés et commandes dédiées plutôt qu'un prompt géant. Chaque dépôt porte son AGENTS.md et son opencode.json.</p></div>
+    <div class="mstep"><div class="idx">04</div><h4>Vérifier</h4><p>Quality gates : contrôle de mise en page, QA de deck, respect de la charte rédactionnelle (zéro surghèse, zéro généralisation hâtive).</p></div>
+    <div class="mstep"><div class="idx">05</div><h4>Documenter</h4><p>README, recette, relance de session en une phrase. Le projet reprend là où il s'est arrêté, sans recontextualisation.</p></div>
+    <div class="mstep"><div class="idx">06</div><h4>Consolider</h4><p>Vault Obsidian compilé (Palaismental) plutôt qu'un RAG jetable : la connaissance reste lisible, versionnée et interrogeable.</p></div>
+  </div>
+</section>
+
+<!-- ============ GALERIE ============ -->
+<section id="galerie">
+  <div class="sec-head">
+    <div class="sec-num">06 — Direction artistique</div>
+    <h2>Galerie <em>glitch</em></h2>
+    <p class="sec-desc">Images générées utilisées dans cette présentation — univers visuel « sebzenewby ».</p>
+  </div>
+  <div class="gallery">
+    <figure><img src="assets/dodging-pixels.png" alt="Composition abstraite, pixels épars" loading="lazy"><figcaption>Dodging stray pixels</figcaption></figure>
+    <figure><img src="assets/abstract-companion.png" alt="Compagnon abstrait négatif" loading="lazy"><figcaption>Abstract companion — negative</figcaption></figure>
+    <figure><img src="assets/dna-helix.png" alt="Double hélice d'ADN, style kaléidoscope cramoisi" loading="lazy"><figcaption>DNA double helix — crimson</figcaption></figure>
+    <figure><img src="assets/abstract-structure.png" alt="Représentation abstraite d'une structure" loading="lazy"><figcaption>Abstract structure</figcaption></figure>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact" id="contact">
+  <div class="contact-wrap">
+    <div class="sec-head" style="margin-bottom:0">
+      <div class="sec-num">07 — Contact</div>
+      <h2>Travaillons <em>ensemble</em></h2>
+      <p class="sec-desc">Une idée de projet, un besoin d'agent, d'automatisation ou de documentation&nbsp;?</p>
+      <div class="notice">Aucune autre donnée personnelle n'est publiée sur cette page.</div>
+    </div>
+    <a class="mailbig" href="mailto:sebastien.galant@gmail.com">sebastien.galant@gmail.com</a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <span>Sébastien Galant — portfolio projets IA</span>
+  <span>Source : wiki Palaismental · 2026</span>
+</footer>
+
+<script>
+(function(){
+  var btns=document.querySelectorAll('#filters button');
+  var cards=document.querySelectorAll('#grid .card');
+  btns.forEach(function(b){
+    b.addEventListener('click',function(){
+      btns.forEach(function(x){x.classList.remove('on')});
+      b.classList.add('on');
+      var f=b.dataset.f;
+      cards.forEach(function(c){
+        var ok=(f==='all')||c.dataset.c.split(' ').indexOf(f)>-1;
+        c.classList.toggle('hide',!ok);
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
