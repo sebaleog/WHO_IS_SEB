@@ -1,2 +1,12 @@
 # Local Netlify folder
 .netlify
+
+# Secrets & environnement
+.env
+.env.*
+*.pem
+*.key
+
+# Système
+Thumbs.db
+.DS_Store
